@@ -63,3 +63,6 @@ class fletmat(ft.UserControl):
         c=a-b
         d=matrix.matrix.mat_getlist(c)
         return fletmat(d)
+    def changeval(self,x,y,inp):
+        self.a[x+1].controls[y].value=str(inp)
+        self.update()
