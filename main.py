@@ -1,6 +1,6 @@
 import flet as ft
 import fletmat
-
+import fletresult
     
 def main(page: ft.Page):
 
@@ -13,7 +13,7 @@ def main(page: ft.Page):
         )
     page.title="Matrix"
     page.window_height=500
-    page.window_width=500
+    page.window_width=1000
     page.window_left=500
     page.window_top=200
     page.window_resizable=False
@@ -31,6 +31,8 @@ def main(page: ft.Page):
     #mat=fletmat.fletmat()
     global count
     count=0          # to limit operation to only one
+    global operator 
+    operator=''
     def b(a):
         #mat=fletmat.fletmat()
         global count
@@ -59,6 +61,9 @@ def main(page: ft.Page):
     #print(fletmat.fletmat.lenrow(result))
     def plus(a):
         global count
+        global operator
+        operator='+'
+        global m2
         if count==1:
             count=2
             inp.controls.append(ft.Text(value="+"))
@@ -67,6 +72,9 @@ def main(page: ft.Page):
             page.update()
     def minus(a):
         global count
+        global operator 
+        operator='-'
+        global m3
         if count==1:
             count=2
             inp.controls.append(ft.Text(value="-"))
@@ -99,6 +107,8 @@ def main(page: ft.Page):
     def multi(a):
         global z
         global count
+        global operator 
+        operator='*'
         if count==1:
             count=2
             inp.controls.append(ft.Text(value="x"))
@@ -107,8 +117,16 @@ def main(page: ft.Page):
             z:=ft.TextField(value="0",on_submit=c)]
             page.update()
     def equal(a):
-        fletmat.fletmat.printmat(mat1)
-
+        #fletmat.fletmat.printmat(mat1)
+        if operator=='+':
+            
+            mat3=fletmat.fletmat.matadd(mat1,m2)
+            inp.controls=[mat3]
+            page.update()
+        elif operator=='-':
+            mat3=fletmat.fletmat.matsub(mat1,m3)
+            inp.controls=[mat3]
+            page.update()    
     page.add(
         inp,
         #x,
@@ -116,7 +134,6 @@ def main(page: ft.Page):
         enrow:=ft.Row(controls=[
                 
                 enter:=ft.TextField(
-                label="Enter here",
                 border_color="transparent",
                     keyboard_type="number",
                 #on_submit=click
@@ -145,4 +162,4 @@ def main(page: ft.Page):
         )
     
     
-ft.app(target=main)
+ft.app(target=main))
