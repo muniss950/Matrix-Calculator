@@ -36,16 +36,17 @@ class matrix(object):
     def __add__(self,rmat):      #special function for defining addition
         c=rmat.mat_getlist()
         b=self.mat_getlist()
+        res= [[0 for j in range(len(c[i]))] for i in range(len(c))]
         for i in range(len(b)):
-            for j in range(len([i])) :
-                b[i][j]+=c[i][j]
-        t=matrix(b)
+            for j in range(len(b[i])) :
+                res[i][j]=c[i][j]+b[i][j]
+        t=matrix(res)
         return t
     def __sub__(self,rmat):      #special function for defining addition
         c=rmat.mat_getlist()
         b=self.mat_getlist()
         for i in range(len(b)):
-            for j in range(len([i])) :
+            for j in range(len(b[i])) :
                 b[i][j]-=c[i][j]
         t=matrix(b)
         return t
@@ -63,4 +64,4 @@ class matrix(object):
                 x+="\n"
             return x
 
-        return s(self.a)    
+        return s(self.a)       
