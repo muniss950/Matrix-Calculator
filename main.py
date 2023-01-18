@@ -83,7 +83,6 @@ def main(page: ft.Page):
             page.update()        
     def ac(a):
         global count
-        #global x
         count=0
         inp.controls=[
         ft.Text(value="How many rows: "),
@@ -94,9 +93,10 @@ def main(page: ft.Page):
         #print(x.value,y.value)
         global z
         global mat1
-        mat1=fletmat.fletwith(int(y.value),int(z.value))
+        global mat2
+        mat2=fletmat.fletwith(int(y.value),int(z.value))
         #fletmat.fletmat.printmat(mat1)
-        inp.controls.append(mat1)
+        inp.controls.append(mat2)
         enrow.controls=[enter:=ft.TextField(
                 label="Enter here",
                 border_color="transparent",
@@ -116,8 +116,35 @@ def main(page: ft.Page):
             ft.Text(value="How many columns: "),
             z:=ft.TextField(value="0",on_submit=c)]
             page.update()
+    def trans(a):
+        global operator
+        global count
+        operator="Tr"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{Tr}"))
+            page.update()
+    def trace(a):
+        global count
+        global operator
+        operator="trace"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{trace}"))
+            page.update()
+    def square(a):
+        global count
+        global operator
+        operator="sq"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{CheckSquare}"))
+            page.update()
+    
     def equal(a):
         #fletmat.fletmat.printmat(mat1)
+        global mat3
+        global operator
         if operator=='+':
             
             mat3=fletmat.fletmat.matadd(mat1,m2)
@@ -126,7 +153,24 @@ def main(page: ft.Page):
         elif operator=='-':
             mat3=fletmat.fletmat.matsub(mat1,m3)
             inp.controls=[mat3]
-            page.update()    
+            page.update()
+        elif operator=="Tr":
+            mat3=fletmat.fletmat.flet_transpose(mat1)
+            inp.controls=[mat3]
+            page.update()
+        elif operator=="*":
+            mat3=fletmat.fletmat.matmulti(mat1,mat2)
+            inp.controls=[mat3]
+            page.update()
+        elif operator=="trace":
+            res=fletmat.fletmat.flet_trace(mat1)
+            inp.controls=[res]
+            page.update()
+        elif operator=="sq":
+            res=fletmat.fletmat.flet_square(mat1)
+            inp.controls=[res]
+            page.update()
+        operator=''    
     page.add(
         inp,
         #x,
@@ -144,12 +188,20 @@ def main(page: ft.Page):
             controls=[
                 ft.ElevatedButton(text="AC",expand=True,on_click=ac),
                 ft.ElevatedButton(text="INV",expand=True),
-                ft.ElevatedButton(text="Tr",expand=True),
+                ft.ElevatedButton(text="Tr",expand=True,on_click=trans),
                 ft.ElevatedButton(text="Det",expand=True),
             ],
      
         ),
         ft.Row(
+            controls=[
+                ft.ElevatedButton(text="isSq",expand=True,on_click=square),
+                ft.ElevatedButton(text="trace",expand=True,on_click=trace),
+                ft.ElevatedButton(text="Adj",expand=True,),
+                ft.ElevatedButton(text="CoF",expand=True),
+            ],
+        )
+        ,ft.Row(
             controls=[    
                 ft.ElevatedButton(text="x",expand=True,on_click=multi),
                 ft.ElevatedButton(text="-",expand=True,on_click=minus),
@@ -162,4 +214,4 @@ def main(page: ft.Page):
         )
     
     
-ft.app(target=main))
+ft.app(target=main)
