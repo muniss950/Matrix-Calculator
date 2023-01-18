@@ -75,7 +75,14 @@ class matrix(object):
             return matrix(res)
         else:
             raise ValueError("no of columns in first matrix must be equal to no of rows in second matrix")    
-    
+    def trace(self):
+        if self.is_square():
+            res=0
+            for i in range(len(self.a)):
+                res+=self.a[i][i]
+            return res
+        else:
+            raise ValueError("Matrix needs to be square.")
     def __str__(self):   #for printing matrix
 
         def s(q):
