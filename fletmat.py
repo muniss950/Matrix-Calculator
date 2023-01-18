@@ -172,6 +172,13 @@ class fletmat(ft.UserControl):
             return fletresult.fletresult(c)
         else:
             return ft.Text(value="Matrix needs to be square")
+    def flet_adjoint(self):
+        a=self.getmatrix()
+        if a.is_square():
+            c=a.adjoint().mat_getlist()
+            return fletresult.fletresult(c)
+        else:
+            return ft.Text(value="Matrix needs to be square")
 def fletwith(x,y): #creating matrix with no of columns
     lst=[[0 for i in range(int(y))] for j in range(int(x))]
     m=fletmat(lst)
