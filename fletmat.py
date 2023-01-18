@@ -179,6 +179,15 @@ class fletmat(ft.UserControl):
             return fletresult.fletresult(c)
         else:
             return ft.Text(value="Matrix needs to be square")
+    
+    def flet_cofactor(self,x,y):
+        c=self.getmatrix()
+        a=c.mat_getlist()
+        if (x<len(a[0]) or y<len((a))) and c.is_square():
+            res=c.algebric_complement(x,y)
+            return ft.Text(value=str(res))
+        else:
+            return ft.Text(value="Cofactor cant be found")
 def fletwith(x,y): #creating matrix with no of columns
     lst=[[0 for i in range(int(y))] for j in range(int(x))]
     m=fletmat(lst)
