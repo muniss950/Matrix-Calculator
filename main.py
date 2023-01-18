@@ -140,6 +140,22 @@ def main(page: ft.Page):
             count=2
             inp.controls.append(ft.Text(value="{CheckSquare}"))
             page.update()
+    def deter(a):
+        global count
+        global operator
+        operator="det"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{DET}"))
+            page.update()
+    def inve(a):
+        global count
+        global operator
+        operator="inv"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{INV}"))
+            page.update()
     
     def equal(a):
         #fletmat.fletmat.printmat(mat1)
@@ -170,6 +186,14 @@ def main(page: ft.Page):
             res=fletmat.fletmat.flet_square(mat1)
             inp.controls=[res]
             page.update()
+        elif operator=="det":
+            res=fletmat.fletmat.flet_determinant(mat1)
+            inp.controls=[res]
+            page.update()
+        elif operator=="inv":
+            res=fletmat.fletmat.flet_inverse(mat1)
+            inp.controls=[res]
+            page.update()
         operator=''    
     page.add(
         inp,
@@ -187,9 +211,9 @@ def main(page: ft.Page):
         ft.Row(
             controls=[
                 ft.ElevatedButton(text="AC",expand=True,on_click=ac),
-                ft.ElevatedButton(text="INV",expand=True),
+                ft.ElevatedButton(text="INV",expand=True,on_click=inve),
                 ft.ElevatedButton(text="Tr",expand=True,on_click=trans),
-                ft.ElevatedButton(text="Det",expand=True),
+                ft.ElevatedButton(text="Det",expand=True,on_click=deter),
             ],
      
         ),
