@@ -106,6 +106,7 @@ class matrix(object):
         return matrix(newMatrix)
     
     def algebric_complement(self, row, column):
+        #Co Factor of matrix
         complementMatrix = self.complement_matrix(row, column)
         algebricComplement = (-1)**(row+column) * complementMatrix.determinant()
 
