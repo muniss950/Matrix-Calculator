@@ -144,7 +144,8 @@ class matrix(object):
             return matrix(newMatrix)
         else:
             raise TypeError("Algebric complements can only be calculated on a square matrix")
-    
+    def adjoint(self):
+        return self.algebric_complements_matrix().transpose()
     def inverse_matrix(self):
         '''Return the inverse matrix.'''
         det = self.determinant()
@@ -167,4 +168,4 @@ class matrix(object):
                 x+="\n"
             return x
 
-        return s(self.a)     
+        return s(self.a)    
