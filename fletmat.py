@@ -158,6 +158,20 @@ class fletmat(ft.UserControl):
             return ft.Text(value="YES")
         else:
             return ft.Text(value="NO")
+    def flet_determinant(self):
+        a=self.getmatrix()
+        if a.is_square():
+            c=a.determinant()
+            return ft.Text(value=str(c))
+        else:
+            return ft.Text(value="The matrix needs to be square")
+    def flet_inverse(self):
+        a=self.getmatrix()
+        if a.is_square():
+            c=a.inverse_matrix().mat_getlist()
+            return fletresult.fletresult(c)
+        else:
+            return ft.Text(value="Matrix needs to be square")
 def fletwith(x,y): #creating matrix with no of columns
     lst=[[0 for i in range(int(y))] for j in range(int(x))]
     m=fletmat(lst)
