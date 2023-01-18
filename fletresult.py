@@ -24,7 +24,7 @@ class fletresult(ft.UserControl):
         for i in range(len(l)):
             row=[]  
             for j in l[i]:
-                    f=ft.TextField(value=str(j),text_align='center',border_color="Transparent")
+                    f=ft.TextField(value=str(round(j,4)),text_align='center',border_color="Transparent")
                     #f=ft.TextField(value="0",text_align='center',border_color="Transparent",on_change=change)
                     row.append(
                     ft.Container(height=25,width=100,content=(f))# '''on_change=fletmat.changeval'''))
