@@ -156,7 +156,14 @@ def main(page: ft.Page):
             count=2
             inp.controls.append(ft.Text(value="{INV}"))
             page.update()
-    
+    def adj(a):
+        global count
+        global operator
+        operator="adj"
+        if count==1:
+            count=2
+            inp.controls.append(ft.Text(value="{ADJ}"))
+            page.update()    
     def equal(a):
         #fletmat.fletmat.printmat(mat1)
         global mat3
@@ -194,6 +201,10 @@ def main(page: ft.Page):
             res=fletmat.fletmat.flet_inverse(mat1)
             inp.controls=[res]
             page.update()
+        elif operator=="adj":
+            res=fletmat.fletmat.flet_adjoint(mat1)
+            inp.controls=[res]
+            page.update()
         operator=''    
     page.add(
         inp,
@@ -221,7 +232,7 @@ def main(page: ft.Page):
             controls=[
                 ft.ElevatedButton(text="isSq",expand=True,on_click=square),
                 ft.ElevatedButton(text="trace",expand=True,on_click=trace),
-                ft.ElevatedButton(text="Adj",expand=True,),
+                ft.ElevatedButton(text="Adj",expand=True,on_click=adj),
                 ft.ElevatedButton(text="CoF",expand=True),
             ],
         )
