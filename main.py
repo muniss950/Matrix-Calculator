@@ -164,6 +164,35 @@ def main(page: ft.Page):
             count=2
             inp.controls.append(ft.Text(value="{ADJ}"))
             page.update()    
+    def end(e):
+        val="{CoFactor}"+row.value+","+column.value
+        inp.controls.append(ft.Text(value=val))
+        enrow.controls.clear()
+        page.update()
+    
+    def c2(a):
+        global column
+        enrow.controls=[column:=ft.TextField(
+                label="Enter column",
+                border_color="transparent",
+                    keyboard_type="number",
+                on_submit=end
+                ),]
+        page.update()
+    def cof(a):
+        global count
+        global operator
+        global row
+        operator="cof"
+        if count==1:
+            count=2
+            enrow.controls=[row:=ft.TextField(
+                label="Enter row",
+                border_color="transparent",
+                    keyboard_type="number",
+                on_submit=c2
+                ),]
+            page.update()
     def equal(a):
         #fletmat.fletmat.printmat(mat1)
         global mat3
@@ -205,6 +234,10 @@ def main(page: ft.Page):
             res=fletmat.fletmat.flet_adjoint(mat1)
             inp.controls=[res]
             page.update()
+        elif operator=="cof":
+            res=fletmat.fletmat.flet_cofactor(mat1,int(row.value),int(column.value))
+            inp.controls=[res]
+            page.update()
         operator=''    
     page.add(
         inp,
@@ -233,7 +266,7 @@ def main(page: ft.Page):
                 ft.ElevatedButton(text="isSq",expand=True,on_click=square),
                 ft.ElevatedButton(text="trace",expand=True,on_click=trace),
                 ft.ElevatedButton(text="Adj",expand=True,on_click=adj),
-                ft.ElevatedButton(text="CoF",expand=True),
+                ft.ElevatedButton(text="CoF",expand=True,on_click=cof),
             ],
         )
         ,ft.Row(
