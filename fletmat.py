@@ -143,11 +143,21 @@ class fletmat(ft.UserControl):
         c=a*b
         d=matrix.matrix.mat_getlist(c)
         return fletresult.fletresult(d)
+    def flet_trace(self,):
+        a=self.getmatrix()
+        c=a.trace()
+        return ft.Text(value=str(c))
     def flet_transpose(self):
         mat=self.getmatrix() 
         tr=mat.transpose()
         res=matrix.matrix.mat_getlist(tr) 
         return fletresult.fletresult(res)
+    def flet_square(self):
+        a=self.getmatrix()
+        if a.is_square():
+            return ft.Text(value="YES")
+        else:
+            return ft.Text(value="NO")
 def fletwith(x,y): #creating matrix with no of columns
     lst=[[0 for i in range(int(y))] for j in range(int(x))]
     m=fletmat(lst)
