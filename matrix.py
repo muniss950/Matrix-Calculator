@@ -1,3 +1,4 @@
+from copy import deepcopy
 class matrix(object):
     
     def __init__(self,a): #defining matrix
@@ -75,6 +76,16 @@ class matrix(object):
             return matrix(res)
         else:
             raise ValueError("no of columns in first matrix must be equal to no of rows in second matrix")    
+    def scalar_product(self, number):
+        newMatrix =[[0 for j in range(len(self.a[0]))] for i in range(len(self.a))]
+
+        for row in range(len(self.a)):
+            for column in range(len(self.a[0])):
+                newMatrix[row][column] = self.a[row][column] * number
+
+        return matrix(newMatrix)
+    
+    
     def trace(self):
         if self.is_square():
             res=0
@@ -83,6 +94,68 @@ class matrix(object):
             return res
         else:
             raise ValueError("Matrix needs to be square.")
+    def complement_matrix(self, rowToDelete, columnToDelete):
+        newMatrix = deepcopy(self).mat_getlist()
+        del(newMatrix[rowToDelete])
+
+        for row in range(len(newMatrix)):
+            del(newMatrix[row][columnToDelete])
+
+        #newMatrix.columns -= 1
+
+        return matrix(newMatrix)
+    
+    def algebric_complement(self, row, column):
+        complementMatrix = self.complement_matrix(row, column)
+        algebricComplement = (-1)**(row+column) * complementMatrix.determinant()
+
+        return (algebricComplement)
+
+    def determinant(self):
+        '''
+        Return the determinant.
+        This function uses Laplace's theorem to calculate the determinant.
+        It is a very rough implementation, which means it becomes slower and
+        slower as the size of the matrix grows.
+        '''
+        b=self.mat_getlist()
+        if self.is_square():
+            if len(b) == 1:
+                # If it's a square matrix with only 1 row, it has only 1 element
+                det = b[0][0] # The determinant is equal to the element
+            elif len(b) == 2:
+                det = (b[0][0] * b[1][1]) - (b[0][1] * b[1][0])
+            else:
+                # We calculate the determinant using Laplace's theorem
+                det = 0
+                for element in range(len(b[0])):
+                    det += b[0][element] * (self.algebric_complement(0, element))
+            return det
+        else:
+            raise TypeError("Can only calculate the determinant of a square matrix")
+
+    def algebric_complements_matrix(self):
+        '''Return the matrix of all algebric complements.'''
+        if self.is_square():
+            newMatrix = [[0 for j in range(len(self.a[0]))] for i in range(len(self.a))]
+            for row in range(len(self.a)):
+                for column in range(len(self.a[0])):
+                    newMatrix[row][column] = self.algebric_complement(row, column)
+            return matrix(newMatrix)
+        else:
+            raise TypeError("Algebric complements can only be calculated on a square matrix")
+    
+    def inverse_matrix(self):
+        '''Return the inverse matrix.'''
+        det = self.determinant()
+        if det == 0:
+            raise Exception("Matrix not invertible")
+        else:
+            algebricComplementsMatrix = self.algebric_complements_matrix()
+            inverseMatrix =  algebricComplementsMatrix.transpose().scalar_product(1/det)
+
+            return inverseMatrix
+
     def __str__(self):   #for printing matrix
 
         def s(q):
@@ -94,4 +167,4 @@ class matrix(object):
                 x+="\n"
             return x
 
-        return s(self.a)    
+        return s(self.a)     
