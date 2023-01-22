@@ -75,9 +75,9 @@ class fletmat(ft.UserControl):
         )
         return ft.Row(
         controls=[
-            ft.Text(value='[',size=40*(self.row),weight="w100"),
+            ft.Text(value='[',size=40*(self.column),weight="w100"),
             self.x
-            ,ft.Text(value=']',size=40*(self.row),weight="w100")],
+            ,ft.Text(value=']',size=40*(self.column),weight="w100")],
     scroll=True,
 
     )
@@ -146,7 +146,7 @@ class fletmat(ft.UserControl):
     def flet_trace(self,):
         a=self.getmatrix()
         c=a.trace()
-        return ft.Text(value=str(c))
+        return ft.Text(value=str(c),weight="w700",size=30)
     def flet_transpose(self):
         mat=self.getmatrix() 
         tr=mat.transpose()
@@ -155,39 +155,39 @@ class fletmat(ft.UserControl):
     def flet_square(self):
         a=self.getmatrix()
         if a.is_square():
-            return ft.Text(value="YES")
+            return ft.Text(value="YES",weight="w700",size=30)
         else:
-            return ft.Text(value="NO")
+            return ft.Text(value="NO",weight="w700",size=30)
     def flet_determinant(self):
         a=self.getmatrix()
         if a.is_square():
             c=a.determinant()
-            return ft.Text(value=str(c))
+            return ft.Text(value=str(c),weight="w700",size=30)
         else:
-            return ft.Text(value="The matrix needs to be square")
+            return ft.Text(value="The matrix needs to be square",weight="w700",size=30)
     def flet_inverse(self):
         a=self.getmatrix()
         if a.is_square():
             c=a.inverse_matrix().mat_getlist()
             return fletresult.fletresult(c)
         else:
-            return ft.Text(value="Matrix needs to be square")
+            return ft.Text(value="Matrix needs to be square",weight="w700",size=30)
     def flet_adjoint(self):
         a=self.getmatrix()
         if a.is_square():
             c=a.adjoint().mat_getlist()
             return fletresult.fletresult(c)
         else:
-            return ft.Text(value="Matrix needs to be square")
+            return ft.Text(value="Matrix needs to be square",weight="w700",size=30)
     
     def flet_cofactor(self,x,y):
         c=self.getmatrix()
         a=c.mat_getlist()
         if (x<len(a[0]) or y<len((a))) and c.is_square():
             res=c.algebric_complement(x,y)
-            return ft.Text(value=str(res))
+            return ft.Text(value=str(res),weight="w700",size=30)
         else:
-            return ft.Text(value="Cofactor cant be found")
+            return ft.Text(value="Cofactor cant be found",weight="w700",size=30)
 def fletwith(x,y): #creating matrix with no of columns
     lst=[[0 for i in range(int(y))] for j in range(int(x))]
     m=fletmat(lst)
