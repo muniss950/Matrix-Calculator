@@ -66,7 +66,7 @@ def main(page: ft.Page):
         global m2
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="+"))
+            inp.controls.append(ft.Text(value="+",weight="w700",size=30))
             m2=fletmat.fletwith(x.value,y.value)
             inp.controls.append(m2)
             page.update()
@@ -77,7 +77,7 @@ def main(page: ft.Page):
         global m3
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="-"))
+            inp.controls.append(ft.Text(value="-",weight="w700",size=30))
             m3=fletmat.fletwith(x.value,y.value)
             inp.controls.append(m3)
             page.update()        
@@ -111,7 +111,7 @@ def main(page: ft.Page):
         operator='*'
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="x"))
+            inp.controls.append(ft.Text(value="x",weight="w700",size=30))
             enrow.controls=[
             ft.Text(value="How many columns: "),
             z:=ft.TextField(value="0",on_submit=c)]
