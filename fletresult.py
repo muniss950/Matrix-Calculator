@@ -54,9 +54,9 @@ class fletresult(ft.UserControl):
         )
         return ft.Row(
         controls=[
-            ft.Text(value='[',size=40*(self.row),weight="w100"),
+            ft.Text(value='[',size=40*(self.column),weight="w100"),
             self.x
-            ,ft.Text(value=']',size=40*(self.row),weight="w100")],
+            ,ft.Text(value=']',size=40*(self.column),weight="w100")],
     scroll=True,
 
     )
