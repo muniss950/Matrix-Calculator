@@ -122,7 +122,7 @@ def main(page: ft.Page):
         operator="Tr"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{Tr}"))
+            inp.controls.append(ft.Text(value="{Tranpose}",weight="w700",size=30))
             page.update()
     def trace(a):
         global count
@@ -130,7 +130,7 @@ def main(page: ft.Page):
         operator="trace"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{trace}"))
+            inp.controls.append(ft.Text(value="{Trace}",weight="w700",size=30))
             page.update()
     def square(a):
         global count
@@ -138,7 +138,7 @@ def main(page: ft.Page):
         operator="sq"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{CheckSquare}"))
+            inp.controls.append(ft.Text(value="{CheckSquare}",weight="w700",size=30))
             page.update()
     def deter(a):
         global count
@@ -146,7 +146,7 @@ def main(page: ft.Page):
         operator="det"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{DET}"))
+            inp.controls.append(ft.Text(value="{DET}",weight="w700",size=30))
             page.update()
     def inve(a):
         global count
@@ -154,7 +154,7 @@ def main(page: ft.Page):
         operator="inv"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{INV}"))
+            inp.controls.append(ft.Text(value="{INV}",weight="w700",size=30))
             page.update()
     def adj(a):
         global count
@@ -162,11 +162,11 @@ def main(page: ft.Page):
         operator="adj"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{ADJ}"))
+            inp.controls.append(ft.Text(value="{ADJ}",weight="w700",size=30))
             page.update()    
     def end(e):
         val="{CoFactor}"+row.value+","+column.value
-        inp.controls.append(ft.Text(value=val))
+        inp.controls.append(ft.Text(value=val,weight="w700",size=30))
         enrow.controls.clear()
         page.update()
     
