@@ -122,7 +122,7 @@ def main(page: ft.Page):
         operator="Tr"
         if count==1:
             count=2
-            inp.controls.append(ft.Text(value="{Tranpose}",weight="w700",size=30))
+            inp.controls.append(ft.Text(value="{Transpose}",weight="w700",size=30))
             page.update()
     def trace(a):
         global count
